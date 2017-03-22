@@ -14,14 +14,15 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.create!(params.require(:task).permit(:text, :completed))
+    # @task = Task.create!(params.require(:task).permit(:text, :completed))
+    @task = Task.create!(params.permit(:text, :completed))
 
     render json: @task
   end
 
   def update
     @task = Task.find params[:id]
-    @task.update_attributes(params.require(:task).permit(:text, :completed))
+    @task.update_attributes(params.permit(:text, :completed))
 
     render json: @task
   end
